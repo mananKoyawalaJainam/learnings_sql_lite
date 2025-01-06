@@ -58,10 +58,23 @@ class DBHelper {
     return result.map((json) => Picture.fromJson(json)).toList();
   }
 
+  // * delete image
   Future<int> delete(int id) async {
     final db = await instance.database;
     return await db.delete(
       PictureFields.tableName,
+      where: '${PictureFields.id} = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<int> update(int id, Picture picture) async {
+    final db = await instance.database;
+    return await db.update(
+      PictureFields.tableName,
+      {
+        "picture": picture.picture,
+      },
       where: '${PictureFields.id} = ?',
       whereArgs: [id],
     );

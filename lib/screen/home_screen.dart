@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sql_lite/Package/Utils.dart';
 import 'package:sql_lite/models/picture.dart';
 import 'package:sql_lite/database/db_helper.dart';
+import 'package:sql_lite/screen/edit_screen.dart';
 import 'package:sql_lite/Package/Text_Button.dart';
 import 'package:sql_lite/screen/profile_screen.dart';
 import 'package:sql_lite/Package/PackageConstants.dart';
@@ -68,7 +69,15 @@ class _HomeScreenState extends State<HomeScreen> with text_with_button, utils {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          text(text: p.id.toString(), fontSize: 18),
+                          InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) =>
+                                            EditPictureScreen(pid: p.id)));
+                              },
+                              child: Icon(Icons.edit, color: Colors.blue)),
                           Image.memory(
                             p.picture,
                             height: 50,
