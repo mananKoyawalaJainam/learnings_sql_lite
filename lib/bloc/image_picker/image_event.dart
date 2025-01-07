@@ -19,3 +19,15 @@ class SaveImageEvent extends ImageEvent {
   @override
   List<Object> get props => [title, imageBytes];
 }
+
+class UpdateImageEvent extends ImageEvent {
+  final int id;
+  final String title;
+  final Uint8List imageBytes;
+
+  UpdateImageEvent(
+      {required this.id, required this.title, required this.imageBytes});
+
+  @override
+  List<Object> get props => [id, title, imageBytes];
+}

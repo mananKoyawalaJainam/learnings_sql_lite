@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> with text_with_button, utils {
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) =>
-                                            EditPictureScreen(pid: p.id)));
+                                            EditPictureScreen(id: p.id)));
                               },
                               child: Icon(Icons.edit, color: Colors.blue)),
                           Image.memory(

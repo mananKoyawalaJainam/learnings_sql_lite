@@ -68,9 +68,9 @@ class DBHelper {
     );
   }
 
-  Future<int> update(int id, Picture picture) async {
+  Future<Picture> update(int id, Picture picture) async {
     final db = await instance.database;
-    return await db.update(
+    await db.update(
       PictureFields.tableName,
       {
         "picture": picture.picture,
@@ -78,6 +78,20 @@ class DBHelper {
       where: '${PictureFields.id} = ?',
       whereArgs: [id],
     );
+
+    // Fetch the updated picture from the database to return it
+    final List<Map<String, dynamic>> maps = await db.query(
+      PictureFields.tableName,
+      where: '${PictureFields.id} = ?',
+      whereArgs: [id],
+    );
+
+    // Return the updated picture
+    if (maps.isNotEmpty) {
+      return Picture.fromJson(maps.first);
+    } else {
+      throw Exception("Failed to update the picture.");
+    }
   }
 
   Future close() async {

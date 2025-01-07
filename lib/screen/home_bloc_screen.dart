@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sql_lite/Package/Utils.dart';
 import 'package:sql_lite/models/picture.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sql_lite/screen/edit_screen.dart';
 import 'package:sql_lite/Package/Text_Button.dart';
 import 'package:sql_lite/Package/TextFormField.dart';
 import 'package:sql_lite/screen/profile_screen.dart';
@@ -56,6 +57,15 @@ class HomeBlocScreen extends StatelessWidget
                                   height: 100,
                                   width: 100,
                                   child: Image.memory(p.picture)),
+                              InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                EditPictureScreen(id: p.id)));
+                                  },
+                                  child: Icon(Icons.edit, color: Colors.blue)),
                               InkWell(
                                   onTap: () {
                                     context
